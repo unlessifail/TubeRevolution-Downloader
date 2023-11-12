@@ -40,4 +40,6 @@ Software Livre e Acesso ao Código Fonte: Idealmente, o aplicativo seria disponi
 
 Desenvolvido por:
 Kalil M. Santos , 2023
+
+
 GitHub: @unlessifail
