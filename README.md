@@ -15,7 +15,8 @@ Bibliotecas: tkinter, pytube, Pillow
 
 Instalação:
 Instale as bibliotecas necessárias: pip install tk pytube Pillow
-Execute o aplicativo: python tube_revolution_downloader.py
+
+Execute o aplicativo: python main.py
 
 Nota:
 
