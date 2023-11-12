@@ -1,6 +1,5 @@
 Bem-vindo ao TubeRevolution Downloader!
 
-Descrição:
 TubeRevolution Downloader é uma aplicação simples para download de vídeos e músicas do YouTube. Oferece uma interface intuitiva e opções de formato flexíveis.
 
 Instruções de Uso:
@@ -9,14 +8,15 @@ Insira a URL do vídeo/música do YouTube.
 Escolha o formato desejado: MP3, MP4 ou WAV.
 Clique em "Baixar".
 Acompanhe o progresso na barra e encontre os downloads na sua área de trabalho.
-Requisitos:
 
+Requisitos:
 Python 3.10
 Bibliotecas: tkinter, pytube, Pillow
 Instalação:
 
 Instale as bibliotecas necessárias: pip install tk pytube Pillow
 Execute o aplicativo: python tube_revolution_downloader.py
+
 Nota:
 
 O formato WAV está disponível apenas para vídeos com áudio.
