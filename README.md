@@ -11,7 +11,8 @@ Acompanhe o progresso na barra e encontre os downloads na sua área de trabalho.
 
 Requisitos:
 Python 3.10
-Bibliotecas: tkinter, pytube, Pillow
+Bibliotecas:
+tkinter, pytube, Pillow
 
 Instalação:
 Instale as bibliotecas necessárias: pip install tk pytube Pillow
