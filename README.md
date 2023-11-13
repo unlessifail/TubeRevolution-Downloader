@@ -1,5 +1,6 @@
 
-![icon](https://github.com/unlessifail/TubeRevolution-Downloader/assets/34076730/fcd9dcf9-8eef-4552-9a10-988010f91790)
+
+![icon](https://github.com/unlessifail/TubeRevolution-Downloader/assets/34076730/762435c1-7c53-41cc-86a4-d5f74b7f35a6)
 
 
 Bem-vindo ao TubeRevolution Downloader!
