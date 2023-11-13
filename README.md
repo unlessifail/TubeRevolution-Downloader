@@ -1,8 +1,6 @@
 
 
 ![icon](https://github.com/unlessifail/TubeRevolution-Downloader/assets/34076730/762435c1-7c53-41cc-86a4-d5f74b7f35a6)
-
-
 Bem-vindo ao TubeRevolution Downloader!
 
 TubeRevolution Downloader é uma aplicação simples para download de vídeos e músicas do YouTube. Oferece uma interface intuitiva e opções de formato flexíveis.
