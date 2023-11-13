@@ -4,12 +4,13 @@ from tkinter import ttk
 from PIL import Image, ImageTk
 from pytube import YouTube
 from pytube.exceptions import RegexMatchError
+from moviepy.editor import VideoFileClip
 
 class TubeRevolution:
     def __init__(self, master):
         self.master = master
         self.master.title("TubeRevolution Downloader")
-        self.master.geometry("400x200")
+        self.master.geometry("900x540")
         self.master.configure(bg='#eb4034')
 
         self.create_widgets()
@@ -29,7 +30,7 @@ class TubeRevolution:
         self.format_var.set("mp4")
 
         # Adicionando "wav" à lista de opções
-        self.format_options = ["mp3", "mp4", "wav"]
+        self.format_options = ["mp3", "mp4", "wav", "avi"]
         self.format_menu = tk.OptionMenu(self.master, self.format_var, *self.format_options)
         self.format_menu.pack()
 
@@ -46,6 +47,9 @@ class TubeRevolution:
 
         except FileNotFoundError:
             print("Arquivo 'icon.png' não encontrado.")
+
+        self.status_label = tk.Label(self.master, text="Aguardando", font=("Arial", 12), bg='#eb4034')
+        self.status_label.pack()
 
         self.progress_bar = ttk.Progressbar(self.master, orient=tk.HORIZONTAL, length=400, mode='determinate')
         self.progress_bar.pack()
@@ -72,12 +76,14 @@ class TubeRevolution:
                 audio_stream = yt.streams.filter(only_audio=True).first()
                 self.download_stream(audio_stream, download_path, f"{yt.title}.mp3")
             elif format_option == "mp4":
-                video_stream = yt.streams.filter(file_extension=format_option, progressive=True).first()
-                self.download_stream(video_stream, download_path, f"{yt.title}.{format_option}")
+                video_stream = yt.streams.filter(file_extension='mp4', progressive=True).first()
+                self.download_stream(video_stream, download_path, f"{yt.title}.mp4")
             elif format_option == "wav":
-                # Adiciona uma nova cláusula `else` para baixar em WAV
                 audio_stream = yt.streams.filter(only_audio=True).first()
                 self.download_stream(audio_stream, download_path, f"{yt.title}.wav")
+            elif format_option == "avi":
+                video_stream = yt.streams.filter(file_extension='mp4', progressive=True).first()
+                self.download_stream(video_stream, download_path, f"{yt.title}.avi")
             else:
                 print("Formato não suportado.")
 
@@ -87,19 +93,32 @@ class TubeRevolution:
             print(f"Erro: {str(e)}")
 
     def download_stream(self, stream, download_path, filename):
-
         if stream:
-
             self.progress_bar['value'] = 0
+            self.status_label.config(text="Progresso: 0%")
             self.master.update()
 
             self.progress_bar['value'] = 20
             stream.download(download_path)
 
-            os.rename(os.path.join(download_path, stream.default_filename), os.path.join(download_path, filename))
+            original_filepath = os.path.join(download_path, stream.default_filename)
+            converted_filepath = os.path.join(download_path, filename)
+
+            if self.format_var.get() == 'avi':
+                # Convertendo para AVI
+                video_clip = VideoFileClip(original_filepath)
+                video_clip.write_videofile(converted_filepath, codec='libx264', audio_codec='aac', threads=4, preset='ultrafast')
+                video_clip.close()
+                os.remove(original_filepath)
+            else:
+                os.rename(original_filepath, converted_filepath)
 
             self.progress_bar['value'] = 100
-            print("Download concluído!")
+            self.status_label.config(text="Download concluído!")
+
+            # Remover a barra de progresso após 10 segundos
+            self.master.after(10000, lambda: self.progress_bar.pack_forget())
+
         else:
             print(f"Nenhuma stream encontrada para o formato {self.format_var.get()}.")
 
